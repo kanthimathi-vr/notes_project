@@ -1,0 +1,30 @@
+
+{% extends 'myapp/base.html' %}
+
+{% block title %}My Notes{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2>My Notes</h2>
+  <a href="{% url 'note_create' %}" class="btn btn-success">➕ Add Note</a>
+</div>
+
+{% if notes %}
+  <div class="list-group">
+    {% for note in notes %}
+      <a href="{% url 'note_update' note.pk %}"
+         class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">{{ note.title }}</div>
+          <small class="text-muted">
+            Updated: {{ note.updated_at|date:"M d, Y H:i" }}
+          </small>
+        </div>
+        <span class="badge bg-success rounded-pill">Edit</span>
+      </a>
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="text-muted">You have no notes yet.</p>
+{% endif %}
+{% endblock %}

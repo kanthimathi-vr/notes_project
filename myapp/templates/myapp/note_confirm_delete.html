@@ -1,0 +1,20 @@
+
+{% extends 'myapp/base.html' %}
+
+{% block title %}Delete Note{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="alert alert-danger shadow-sm">
+      <h5 class="alert-heading">Delete Note</h5>
+      <p>Are you sure you want to delete the note titled <strong>{{ note.title }}</strong>?</p>
+      <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'note_list' %}" class="btn btn-secondary ms-2">Cancel</a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+
+{% extends 'myapp/base.html' %}
+
+{% block title %}{% if form.instance.pk %}Edit Note{% else %}New Note{% endif %}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card border-success shadow-sm">
+      <div class="card-header bg-success text-white">
+        <h4 class="mb-0">{% if form.instance.pk %}Edit Note{% else %}Add New Note{% endif %}</h4>
+      </div>
+      <div class="card-body bg-light">
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-success mt-3">Save</button>
+          <a href="{% url 'note_list' %}" class="btn btn-outline-secondary mt-3 ms-2">Cancel</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
